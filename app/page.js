@@ -36,14 +36,10 @@ function handleLogin(dispatch)
 }
 
 
-function initialData()
-{
-  return false
-}
 
 export default function Home({children,href}) {
 
-  const [state,dispatch]=useReducer(userReducer,{isAuth:initialData(),loading:true})
+  const [state,dispatch]=useReducer(userReducer,{isAuth:false,loading:true})
  
 
   useEffect(()=>{
@@ -51,7 +47,6 @@ export default function Home({children,href}) {
     if(localStorage?.getItem("authenticated"))
     {
 
-        //localStorage.removeItem("authenticated")
           dispatch({type:"AUTHENTICATED"})
 
         redirect("dashboard?src=redirect")
@@ -60,6 +55,8 @@ export default function Home({children,href}) {
        
      
     }
+    else
+      dispatch({type:'FAIL'})
   
   },[state.loading])
 
