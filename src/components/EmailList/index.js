@@ -18,6 +18,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import { track } from '@vercel/analytics/react';
 
 const messages = [
   {
@@ -98,7 +99,10 @@ export default function Index() {
                   Yesterday
                 </ListSubheader>
               )}
-              <ListItem button>
+              <ListItem button onClick={()=>{
+                track("clciked",{user:"user"})
+
+              }}>
                 <ListItemAvatar>
                   <Avatar alt="Profile Picture" src={person} />
                 </ListItemAvatar>

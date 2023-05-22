@@ -2,6 +2,7 @@
 import { useEffect, useReducer } from 'react'
 import Loading from './loading'
 import { redirect } from 'next/navigation'
+import {track} from '@vercel/analytics/react'
 
 
 
@@ -47,6 +48,8 @@ export default function Home({children,href}) {
     if(localStorage?.getItem("authenticated"))
     {
 
+
+      track("authenticated",{user:"test user"})
           dispatch({type:"AUTHENTICATED"})
 
         redirect("dashboard?src=redirect")
